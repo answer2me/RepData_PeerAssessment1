@@ -1,23 +1,22 @@
 # Load an prepare the data
 ## Download the data and ensure that the working directory contains downloaded file (setwd())
-```r
 [link to the data](https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip)
-## Unzip/load the data
+### Unzip/load the data
 ```r
 if(!file.exists('activity.csv')){
     unzip('repdata%2Fdata%2Factivity.zip')
 }
 activityData <- read.csv('activity.csv')
 ```
-## Ensure that the date format is appropriate 
+### Ensure that the date format is appropriate 
 ```r
 activityData$Date <- as.Date(activityData$date, "%Y-%m-%d")
 ```
-## Ensure that interval is a factor variable
+### Ensure that interval is a factor variable
 ```r
 activityData$interval <- as.factor(activityData$interval)
 ```
-## Exrtract levels of 5-min intervals
+### Exrtract levels of 5-min intervals
 ```r
 l <- levels(activityData$interval)
 ```
