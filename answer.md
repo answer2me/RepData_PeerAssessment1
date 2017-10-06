@@ -30,6 +30,6 @@ totalSteps <- tapply(activityData$steps, activityData$date, sum, na.rm = T)
 ```
 ```r
 # Create a histogram 
-hist(totalSteps, breaks = 10, col = "red", main = "Total Number of steps each day", 
-    xlab = "Average Total Number of Steps")
+hist(totalSteps, breaks = 50, col = "blue", main = "Total Number of steps each day", 
+     xlab = "Total Number of Steps")
 ```
