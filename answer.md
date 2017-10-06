@@ -45,7 +45,8 @@ hist(totalSteps, breaks = 50, col = "blue", main = "Total Number of steps each d
 totalStepsMean <- mean(totalSteps)
 totalStepsMedian <- median(totalSteps)
 ```
-
+**Mean 9354**
+**Median 10395**
 ## Time series plot of the average number of steps taken
 ```r
 # Calculate the average number of steps grouped by intereval
@@ -65,3 +66,11 @@ ggplot(df, aes(Interval, averageSteps)) + geom_line(colour = "blue") + ggtitle("
     ylab("Average Number of Steps")
  ```
  ![plot of Rplot2](Rplot2.png) 
+ 
+ ```r
+ # FInd out which interval contains highest average steps
+ which.max(df$averageSteps)
+ ```
+ **Max interval at 835**
+ ## Code to describe and show a strategy for imputing missing data
+ 
