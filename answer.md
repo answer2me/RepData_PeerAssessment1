@@ -106,3 +106,16 @@ totalStepsImputedMedian <- median(totalStepsImputed)
 *Mean Imputed 10766*  
 *Median Imputed 10766*
 
+```r
+#
+activityDataImputed$dateType <-  ifelse(as.POSIXlt(activityDataImputed$date)$wday %in% c(0,6), 'weekend', 'weekday')
+#
+averagedActivityDataImputed <- aggregate(steps ~ interval + dateType, data=activityDataImputed, mean)
+# For plotting reasons we define interval as integer
+averagedActivityDataImputed$interval <- as.integer(averagedActivityDataImputed$interval)
+```
+```r
+#plot
+ggplot(averagedActivityDataImputed, aes(interval, steps, fill = dateType, colour = dateType)) + geom_line() + labs(colour = "") + ggtitle("Average number of steps taken per 5-minute interval across weekdays and weekends")
+```
+![plot of Rplot4](Rplot4.png) 
