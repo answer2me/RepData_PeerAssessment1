@@ -2,6 +2,7 @@
 ```r
 # Load libraries
 library(ggplot2)
+library(Hmisc)
 ```
 
 ## Download the data and ensure that the working directory contains downloaded file (setwd())
@@ -45,8 +46,8 @@ hist(totalSteps, breaks = 50, col = "blue", main = "Total Number of steps each d
 totalStepsMean <- mean(totalSteps)
 totalStepsMedian <- median(totalSteps)
 ```
-**Mean 9354**
-**Median 10395**
+*Mean 9354*  
+*Median 10395*
 ## Time series plot of the average number of steps taken
 ```r
 # Calculate the average number of steps grouped by intereval
@@ -71,6 +72,37 @@ ggplot(df, aes(Interval, averageSteps)) + geom_line(colour = "blue") + ggtitle("
  # FInd out which interval contains highest average steps
  which.max(df$averageSteps)
  ```
- **Max interval at 835**
+ *Max interval at 835*
  ## Code to describe and show a strategy for imputing missing data
  
+```r
+# First run summary for determining overall situation with the data set and missing values
+summary(activityData)
+```
+*Number of missing values: 2304 or ~13% from the total data, what may cause a problem*
+
+```r
+# In order to deal with the problem missing values will be replaced with the mean values
+activityDataImputed <- activityData
+activityDataImputed$steps <- impute(activityData$steps, fun=mean)
+```
+```r
+# Calculate new total steps
+totalStepsImputed <- tapply(activityDataImputed$steps, activityDataImputed$date, sum)
+```
+
+```r
+# plot
+hist(totalStepsImputed, breaks = 50, col = "blue", main = "Total Number of steps each day (NA imputed as mean)", 
+     xlab = "Total Number of Steps")
+```
+![plot of Rplot3](Rplot3.png) 
+
+```r
+# Mean and median number of steps taken each day
+totalStepsImputedMean <- mean(totalStepsImputed)
+totalStepsImputedMedian <- median(totalStepsImputed)
+```
+*Mean Imputed 10766*  
+*Median Imputed 10766*
+
