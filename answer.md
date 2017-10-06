@@ -33,3 +33,4 @@ totalSteps <- tapply(activityData$steps, activityData$date, sum, na.rm = T)
 hist(totalSteps, breaks = 50, col = "blue", main = "Total Number of steps each day", 
      xlab = "Total Number of Steps")
 ```
+![plot of Rplot](Rplot.png) 
